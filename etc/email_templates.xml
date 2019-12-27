@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="callforprice_request" label="callforprice_email" file="callforprice_request.html" type="html"
+              module="Adorncommerce_CallForPrice" area="frontend"/>
+</config>

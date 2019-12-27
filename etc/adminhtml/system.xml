@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="adorncommerce" translate="label" sortOrder="100">
+            <label>Adorncommerce</label>
+        </tab>
+        <section id="adorncommerce" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Call For Price</label>
+            <tab>adorncommerce</tab>
+            <resource>Adorncommerce_CallForPrice::config_callforprice</resource>
+            <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" >
+                <label>Call For Price Configration</label>
+                <field id="enable_frontend" translate="label comment" type="select" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable/Disable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="button_text" translate="label comment" type="text" sortOrder="0"  showInDefault="1" canRestore="1" showInWebsite="1" showInStore="1">
+                    <label>Call For Price Button Text</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable_frontend">1</field>
+                    </depends>
+                </field>
+
+                <field id="send_email_to" translate="label comment" type="text" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Email To</label>
+                    <validate>validate-email</validate>
+                    <depends>
+                        <field id="enable_frontend">1</field>
+                    </depends>
+                </field>
+
+                <field id="email_sender" translate="label comment" type="select" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends>
+                        <field id="enable_frontend">1</field>
+                    </depends>
+                </field>
+                <field id="customer_group" translate="label comment" type="multiselect" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Group</label>
+                    <source_model>Adorncommerce\CallForPrice\Model\Config\Source\CustomerGroup</source_model>
+                    <depends>
+                        <field id="enable_frontend">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

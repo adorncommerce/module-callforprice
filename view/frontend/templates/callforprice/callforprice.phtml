@@ -1,0 +1,104 @@
+<?php
+/**
+ * Product list template
+ * @var $block \Adorncommerce\CallForPrice\Block\CallForPrice
+ */
+?>
+<?php
+$helper = $this->helper('Adorncommerce\CallForPrice\Helper\Data');
+$_product = $block->getCurrentProduct();
+if ($helper->isAvailableForCustomer()):
+	?>
+    <div id="call-for-price-form" class="no-display quick-popup-qquote" style="display: none">
+		<?php
+		$customerData = false;
+		if ($block->getCustomerData()) {
+			$customerData = $block->getCustomerData();
+		}
+		?>
+        <form method='post' class="formquickquote form-create-account" data-mage-init='{"validation":{}}'
+              id="callforpricePopup" name="callforpricePopup"
+              action='<?php echo $this->getUrl('callforprice/index/submit', array('_secure' => true)) ?>'>
+            <div class="formquickquote-form">
+                <div class="fieldset">
+					<?php if ($customerData):
+						$email = $customerData->getData('email') ? $customerData->getData('email') : $block->getCustomerEmail();
+					endif; ?>
+                    <input type='text'
+					       <?php if ($customerData): ?>value="<?php echo $customerData->getName() ?>"<?php endif; ?>
+                           name='customer[name]' class="required-entry input-text"
+                           placeholder="<?php echo 'Name' ?> *"/>
+                </div>
+                <div class="fieldset">
+                    <input <?php if (!empty($email)): ?>readonly="readonly"<?php endif; ?>
+                           type='email' <?php if ($customerData): ?> value="<?php echo $email; ?>" <?php endif; ?>
+                           name='customer[email]' class="input-text required-entry validate-email"
+                           placeholder="<?php echo 'Email Address' ?> *"/>
+                </div>
+                <div class="fieldset">
+                    <input type='text' value="" name='customer[telephone]' data-validate="{'validate-number':true}"
+                           class="input-text required-entry" placeholder="<?php echo 'Telephone' ?> *"/>
+                </div>
+
+                <div class="fieldset">
+                    <input type='number' value="" name='customer[product_qty]' data-validate="{'validate-number':true}"
+                           class="input-text required-entry" placeholder="<?php echo 'Quantity Needed' ?> *"/>
+                </div>
+                <div class="fieldset">
+                    <textarea id="customer[request_details]" class="input-text" readonly="readonly"
+                              name="customer[request_details]"
+                              placeholder="<?php echo 'Request Details' ?>"><?php if ($_product) {
+							echo $_product->getName();
+						}; ?></textarea>
+                </div>
+                <div class="fieldset">
+                    <button id="formcallforpricesubmit" type="submit"
+                            title="<?php echo 'Request Call For Price' ?>">
+                        <span><span><?php echo 'Request Call For Price' ?></span></span></button>
+                </div>
+                <input type="hidden" name="product_id" value="<?php if ($_product) {
+					echo $_product->getId();
+				} ?>"/>
+
+                <input type="hidden" name="customer_id" value="<?php if ($customerData) {
+					echo $customerData->getId();
+				} ?>"/>
+                <p>
+					<?php echo 'Note: Please include as much details and relevant options about the item to help us match your request with an accurate price.' ?>
+                </p>
+            </div>
+        </form>
+    </div>
+    <script>
+        require(
+            [
+                'jquery',
+                'Magento_Ui/js/modal/modal'
+            ],
+            function (
+                $,
+                modal
+            ) {
+                $(document).ready(function () {
+                    var options = {
+                        type: 'popup',
+                        responsive: true,
+                        innerScroll: true,
+                        title: 'Call For Price Form',
+                        opened: function () {
+                            jQuery(".modal-footer").hide();
+                        },
+                        closeDialog: function () {
+                            this.modal.modal('closeModal');
+                            this.modal = null;
+                        }
+                    };
+                    var popup = modal(options, $('#call-for-price-form'));
+                    $("#call-for-price").on('click', function () {
+                        $("#call-for-price-form").modal("openModal");
+                    });
+                });
+
+            });
+    </script>
+<?php endif; ?>

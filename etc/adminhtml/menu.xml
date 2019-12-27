@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magento_Catalog::callforprice"
+             title="Call For Price"
+             module="Adorncommerce_CallForPrice"
+             sortOrder="9999"
+             resource="Magento_Catalog::products"
+             parent="Magento_Catalog::inventory"
+             action="adorncommerce_callforprice/callforprice"
+        />
+    </menu>
+</config>

@@ -1,0 +1,214 @@
+<!--@subject {{var store.getFrontendName()}}: Call For Price Request @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image"}
+@-->
+
+<!-- Header Start -->
+{{template config_path="design/email/header_template"}}
+<!-- Header end -->
+<!-- quote -->
+<tr>
+    <td>
+        <table class="table600" width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+            <!-- title -->
+            <tr valign="top">
+                <td align="center"
+                    style="font-family: 'Century Gothic', arial, sans-serif; font-size:26px; color:#4d4d4d; font-weight:bold;">
+                    {{trans "Hello, "}} {{trans "Admin"}}
+                </td>
+            </tr>
+            <!-- end title -->
+            <tr>
+                <td height="10"
+                    style="font-family: 'Century Gothic', arial, sans-serif; font-size:16px; color:#000000; font-weight: 700; line-height:30px;">
+                    Thank you for your request! We have received it and will reach out to you via email as soon as
+                    possible with the pricing for the quantity you have requested.<br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- left -->
+
+                    <table class="table3-3" width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="18" align="left"
+                                style="border:1px solid #e0e0e0; font-family: arial, sans-serif, 'Century Gothic'; font-weight:bold; font-size:14px; color:#000000; padding: 12px">
+                                Name: <span style="font-weight: normal;">{{var customer_name}}</span></td>
+                        </tr>
+                        <tr>
+                            <td height="8"></td>
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+
+            <!-- content -->
+            <tr>
+                <td>
+                    <!-- left -->
+
+                    <table class="table3-3" width="288" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="18" align="left"
+                                style="border:1px solid #e0e0e0; font-family: arial, sans-serif, 'Century Gothic'; font-weight:bold; font-size:14px; color:#000000; padding: 12px">
+                                Email
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="8"></td>
+                        </tr>
+                        <tr align="center" bgcolor="#f9f9f9">
+                            <td style="font-family: arial, sans-serif, 'Century Gothic'; font-size:16px; color:#000000;border:1px solid #e0e0e0;border:1px solid #e0e0e0; text-align: left; padding: 12px; line-height: 20px;">
+                                <a href="mailto:{{var customer_email}}" style="display: block; color:#000000;">{{var
+                                    customer_email}}</a></td>
+                        </tr>
+                        <tr>
+                            <td height="8"></td>
+                        </tr>
+
+                    </table>
+
+                    <!-- end left -->
+
+                    <!--Space-->
+
+                    <table width="1" height="25" border="0" cellpadding="0" cellspacing="0" align="left">
+                        <tr>
+                            <td style="font-size: 0;line-height: 0;border-collapse: collapse; ">
+                                <p style="padding-left: 24px;">&nbsp;</p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!--End Space-->
+
+                    <!-- right -->
+
+                    <table class="table1-3" width="288" border="0" align="right" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="18" align="left"
+                                style="border:1px solid #e0e0e0; font-family: arial, sans-serif, 'Century Gothic'; font-weight:bold; font-size:14px; color:#000000; padding: 12px">
+                                Qty
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="8"></td>
+                        </tr>
+                        <tr align="center" bgcolor="#f9f9f9">
+                            <td style="font-family: arial, sans-serif, 'Century Gothic'; font-size:12px; color:#000000;border:1px solid #e0e0e0;border:1px solid #e0e0e0; text-align: left; padding: 12px; line-height: 20px">
+                                <p class="MsoNormal" style="margin: 0"> {{var qty_needed}} </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="8"></td>
+                        </tr>
+
+                    </table>
+
+                    <!-- end right -->
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <!-- left -->
+
+                    <table class="table3-3" width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="18" align="left"
+                                style="border:1px solid #e0e0e0; font-family: arial, sans-serif, 'Century Gothic'; font-weight:bold; font-size:14px; color:#000000; padding: 12px">
+                                Product Name
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="8"></td>
+                        </tr>
+                        <tr align="center" bgcolor="#f9f9f9">
+                            <td style="font-family: arial, sans-serif, 'Century Gothic'; font-size:16px; color:#000000;border:1px solid #e0e0e0;border:1px solid #e0e0e0; text-align: left; padding: 12px; line-height: 20px;">
+                                {{var product_name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="8"></td>
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <!-- left -->
+
+                    <table class="table3-3" width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="18" align="left"
+                                style="border:1px solid #e0e0e0; font-family: arial, sans-serif, 'Century Gothic'; font-weight:bold; font-size:14px; color:#000000; padding: 12px">
+                                Telephone: <span style="font-weight: normal;">{{var telephone}}</span></td>
+                        </tr>
+                        <tr>
+                            <td height="8"></td>
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+
+            <!-- end contnet -->
+
+            <tr>
+                <td height="15"></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!-- end quote -->
+<!-- 2/2 panel -->
+<tr>
+    <td>
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#eaeaea">
+            <tr>
+                <td>
+                    <table class="table600" width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="15"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- left -->
+
+                                <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0"
+                                       class="table2-2">
+
+                                    <!-- image -->
+                                    <tr>
+                                        <td>
+                                            <h1 style="font-family: 'Century Gothic', arial, sans-serif; border-radius:5px;padding:10px;color:#265484;font-size:18px; text-align: center">
+                                                {{trans "Thank You"}}</h1>
+                                        </td>
+                                    </tr>
+                                    <!-- end image -->
+                                    <tr>
+                                        <td height="5"></td>
+                                    </tr>
+
+                                </table>
+
+                                <!-- end left -->
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!-- end 2/2 panel -->
+<!-- Footer Start -->
+{{template config_path="design/email/footer_template"}}
+<!-- Footer End -->
