@@ -5,6 +5,8 @@
             <general>
                 <enable_frontend>1</enable_frontend>
                 <button_text>Call For Price</button_text>
+                <email_sender>general</email_sender>
+                <customer_group>0,1,2,3</customer_group>
             </general>
         </adorncommerce>
     </default>

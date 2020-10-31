@@ -20,9 +20,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     const CONFIG_PATH_GENERAL_EMAIL_SENDER = 'adorncommerce/general/email_sender';
 
-    const CONFIG_PATH_GENERAL_SEND_EMAIL_TO = 'adorncommerce/general/send_email_to';
+    const CONFIG_PATH_GENERAL_SEND_EMAIL_TO = 'adorncommerce/general/send_email_cc';
 
     const CONFIG_PATH_GENERAL_BUTTON_TEXT = 'adorncommerce/general/button_text';
+
+    const CONFIG_PATH_GENERAL_SEND_EMAIL = 'trans_email/ident_general/email';
 
     /**
      * @var \Magento\Customer\Model\Session
@@ -93,6 +95,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->scopeConfig->getValue(
             self::CONFIG_PATH_GENERAL_SEND_EMAIL_TO,
             ScopeInterface::SCOPE_STORE
+        ) ?: $this->senderEmail();
+    }
+
+    public function senderEmail()
+    {
+        return $this->scopeConfig->getValue(
+            self::CONFIG_PATH_GENERAL_SEND_EMAIL,
+            ScopeInterface::SCOPE_STORE
         );
     }
 
@@ -106,7 +116,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getEmailSender()
     {
-
         switch ($this->senderEmailFrom()) {
             case "general":
                 $_path = "trans_email/ident_general/email";

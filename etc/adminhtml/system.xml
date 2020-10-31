@@ -23,8 +23,8 @@
                     </depends>
                 </field>
 
-                <field id="send_email_to" translate="label comment" type="text" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Send Email To</label>
+                <field id="send_email_cc" translate="label comment" type="text" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Email cc</label>
                     <validate>validate-email</validate>
                     <depends>
                         <field id="enable_frontend">1</field>
@@ -32,7 +32,7 @@
                 </field>
 
                 <field id="email_sender" translate="label comment" type="select" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Email Sender</label>
+                    <label>Send Email To</label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
                     <depends>
                         <field id="enable_frontend">1</field>
