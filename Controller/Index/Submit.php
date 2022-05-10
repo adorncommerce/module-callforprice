@@ -85,7 +85,8 @@ class Submit extends \Magento\Framework\App\Action\Action
                 $model->setCustomerTelephone($post['customer']['telephone']);
                 $model->setQty($post['customer']['product_qty']);
                 $model->setProductId($post['product_id']);
-                $model->setProductName($post['customer']['request_details']);
+                $model->setProductName($post['product_name']);
+                $model->setComment($post['customer']['request_details']);
                 $model->setStatus('1');
                 $model->save();
                 try{
@@ -96,9 +97,11 @@ class Submit extends \Magento\Framework\App\Action\Action
                         'store' => $this->storeManager->getStore(),
                         'customer_name' => $post['customer']['name'],
                         'customer_email' => $post['customer']['email'],
-                        'product_name' => $post['customer']['request_details'],
+                        'product_name' => $post['product_name'],
                         'qty_needed' => $post['customer']['product_qty'],
-                        'telephone' => $post['customer']['telephone']
+                        'telephone' => $post['customer']['telephone'],
+                        'comment' => $post['customer']['request_details'],
+                        'email_custom_text' => $this->data->getEmailCustomText()
                     );
                     $to = $this->data->getEmailSender();
                     $this->inlineTranslation->suspend();

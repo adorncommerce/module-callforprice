@@ -98,8 +98,10 @@ class CallForPrice extends \Magento\Framework\Model\AbstractModel implements \Ad
     {
         return $this->getData(self::QTY);
     }
-
-
+    public function getComment()
+    {
+        return $this->getData(self::COMMENT);
+    }
 
 
     public function setId($id)
@@ -137,5 +139,9 @@ class CallForPrice extends \Magento\Framework\Model\AbstractModel implements \Ad
     public function setQty($qty)
     {
         return $this->setData(self::QTY,$qty);
+    }
+    public function setComment($comment)
+    {
+        return $this->setData(self::COMMENT,$comment);
     }
 }

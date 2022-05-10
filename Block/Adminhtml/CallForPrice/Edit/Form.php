@@ -83,9 +83,9 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ['name' => 'customer_email', 'label' => __('Customer Email'), 'title' => __('Customer Email'), 'required' => false]
         );
         $fieldset->addField(
-            'product_name',
+            'comment',
             'textarea',
-            ['name' => 'product_name', 'label' => __('Request Details'), 'title' => __('Request Details'), 'readonly' => true,'required' => false]
+            ['name' => 'comment', 'label' => __('Comment'), 'title' => __('Comment'),'required' => false]
         );
         $fieldset->addField(
             'qty',

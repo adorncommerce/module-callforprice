@@ -17,6 +17,7 @@ interface CallForPriceInterface
     const PRODUCT_NAME      = 'product_name';
     const STATUS    = 'status';
     const QTY = 'qty';
+    const COMMENT = 'comment';
 
 
     public function getId();
@@ -28,6 +29,7 @@ interface CallForPriceInterface
     public function getProductName();
     public function getStatus();
     public function getQty();
+    public function getComment();
 
 
     public function setId($id);
@@ -39,5 +41,6 @@ interface CallForPriceInterface
     public function setProductName($productname);
     public function setStatus($status);
     public function setQty($qty);
+    public function setComment($comment);
 
 }

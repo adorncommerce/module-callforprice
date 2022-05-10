@@ -26,19 +26,25 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     const CONFIG_PATH_GENERAL_SEND_EMAIL = 'trans_email/ident_general/email';
 
-    /**
-     * @var \Magento\Customer\Model\Session
-     */
-    private $customerSession;
+    const CONFIG_PATH_GENERAL_EMAIL_CUSTOM_TEXT = 'adorncommerce/general/email_custom_text';
 
     /**
-     * Data constructor.
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Review\Model\ReviewFactory $reviewFactory
-     * @param \Magento\Framework\Filesystem $filesystem
+     * @var \Magento\Customer\Model\SessionFactory
      */
-    public function __construct(Context $context, SessionFactory $customerSession
+    private $customerSession;
+    /**
+     * @var \Magento\Framework\App\Http\Context
+     */
+    private $httpContext;
+
+    /**
+     * @param Context $context
+     * @param SessionFactory $customerSession
+     * @param \Magento\Framework\App\Http\Context $httpContext
+     */
+    public function __construct(
+        Context $context,
+        SessionFactory $customerSession
     )
     {
         $this->customerSession = $customerSession;
@@ -71,6 +77,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function isAvailableForCustomer()
     {
         $currentGroupId = $this->customerSession->create()->getCustomer()->getGroupId();
+        if(!$this->customerSession->create()->getCustomer()->getData()){
+            $currentGroupId = 0;
+        }
         $configEnabled = $this->scopeConfig->getValue(
             self::CONFIG_PATH_GENERAL_CUSTOMER_GROUP
         );
@@ -176,6 +185,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         } else {
             return false;
         }
+    }
+
+    public function getEmailCustomText()
+    {
+        return $this->scopeConfig->getValue(
+            self::CONFIG_PATH_GENERAL_EMAIL_CUSTOM_TEXT,
+            ScopeInterface::SCOPE_STORE
+        );
     }
 
 }

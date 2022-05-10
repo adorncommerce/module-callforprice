@@ -7,6 +7,8 @@
                 <button_text>Call For Price</button_text>
                 <email_sender>general</email_sender>
                 <customer_group>0,1,2,3</customer_group>
+                <email_custom_text>Thank you for your request! We have received it and will reach out to you via email as soon as
+                    possible with the pricing for the quantity you have requested.</email_custom_text>
             </general>
         </adorncommerce>
     </default>

@@ -15,15 +15,14 @@
             <tr valign="top">
                 <td align="center"
                     style="font-family: 'Century Gothic', arial, sans-serif; font-size:26px; color:#4d4d4d; font-weight:bold;">
-                    {{trans "Hello, "}} {{trans "Admin"}}
+                    {{trans "Hello, "}}
                 </td>
             </tr>
             <!-- end title -->
             <tr>
                 <td height="10"
                     style="font-family: 'Century Gothic', arial, sans-serif; font-size:16px; color:#000000; font-weight: 700; line-height:30px;">
-                    Thank you for your request! We have received it and will reach out to you via email as soon as
-                    possible with the pricing for the quantity you have requested.<br>
+                    {{var email_custom_text}}<br>
                 </td>
             </tr>
             <tr>
@@ -158,7 +157,24 @@
 
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <!-- left -->
 
+                    <table class="table3-3" width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="18" align="left"
+                                style="border:1px solid #e0e0e0; font-family: arial, sans-serif, 'Century Gothic'; font-weight:bold; font-size:14px; color:#000000; padding: 12px">
+                                Comment: <span style="font-weight: normal;">{{var comment}}</span></td>
+                        </tr>
+                        <tr>
+                            <td height="8"></td>
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
             <!-- end contnet -->
 
             <tr>

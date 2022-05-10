@@ -45,11 +45,9 @@ if ($helper->isAvailableForCustomer()):
                            class="input-text required-entry" placeholder="<?php echo 'Quantity Needed' ?> *"/>
                 </div>
                 <div class="fieldset">
-                    <textarea id="customer[request_details]" class="input-text" readonly="readonly"
+                    <textarea id="customer[request_details]" class="input-text"
                               name="customer[request_details]"
-                              placeholder="<?php echo 'Request Details' ?>"><?php if ($_product) {
-							echo $_product->getName();
-						}; ?></textarea>
+                              placeholder="<?php echo 'Comment' ?>"></textarea>
                 </div>
                 <div class="fieldset">
                     <button id="formcallforpricesubmit" type="submit"
@@ -62,6 +60,9 @@ if ($helper->isAvailableForCustomer()):
 
                 <input type="hidden" name="customer_id" value="<?php if ($customerData) {
 					echo $customerData->getId();
+				} ?>"/>
+                <input type="hidden" name="product_name" value="<?php if ($_product) {
+					echo $_product->getName();
 				} ?>"/>
                 <p>
 					<?php echo 'Note: Please include as much details and relevant options about the item to help us match your request with an accurate price.' ?>
@@ -84,7 +85,7 @@ if ($helper->isAvailableForCustomer()):
                         type: 'popup',
                         responsive: true,
                         innerScroll: true,
-                        title: 'Call For Price Form',
+                        title: 'Call For Price for <?php if ($_product) { echo $_product->getName(); } ?>',
                         opened: function () {
                             jQuery(".modal-footer").hide();
                         },
