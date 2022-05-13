@@ -17,8 +17,17 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
 
     protected $helperData;
 
-    public function __construct(Context $context, SaleableInterface $saleableItem, PriceInterface $price, RendererPool $rendererPool, array $data = [], SalableResolverInterface $salableResolver = null, MinimalPriceCalculatorInterface $minimalPriceCalculator = null,\Magento\Framework\Registry $registry,\Adorncommerce\CallForPrice\Helper\Data $helperData)
-    {
+    public function __construct(
+        \Magento\Framework\Registry $registry,
+        \Adorncommerce\CallForPrice\Helper\Data $helperData,
+        Context $context,
+        SaleableInterface $saleableItem,
+        PriceInterface $price,
+        RendererPool $rendererPool,
+        array $data = [],
+        SalableResolverInterface $salableResolver = null,
+        MinimalPriceCalculatorInterface $minimalPriceCalculator = null
+    ) {
         $this->registry = $registry;
         $this->helperData = $helperData;
         parent::__construct($context, $saleableItem, $price, $rendererPool, $data, $salableResolver, $minimalPriceCalculator);
