@@ -1,11 +1,16 @@
 <?php
+
 namespace Adorncommerce\CallForPrice\Block\Adminhtml;
+
 /**
  * Class CallForPrice
  * @package Adorncommerce\CallForPrice\Block\Adminhtml
  */
 class CallForPrice extends \Magento\Backend\Block\Widget\Grid\Container
 {
+    /**
+     * @return void
+     */
     protected function _construct()
     {
         $this->_controller = 'adminhtml_callforprice';
@@ -14,6 +19,10 @@ class CallForPrice extends \Magento\Backend\Block\Widget\Grid\Container
         parent::_construct();
     }
 
+    /**
+     * @param $resourceId
+     * @return bool
+     */
     protected function _isAllowedAction($resourceId)
     {
         return $this->_authorization->isAllowed($resourceId);

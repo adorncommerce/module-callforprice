@@ -85,7 +85,6 @@
                 </item>
             </argument>
         </filters>
-
         <massaction name="listing_massaction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -174,7 +173,6 @@
                 </item>
             </argument>
         </selectionsColumn>
-
         <column name="id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -185,8 +183,6 @@
                 </item>
             </argument>
         </column>
-
-
         <column name="customer_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -202,7 +198,6 @@
                 </item>
             </argument>
         </column>
-
         <column name="customer_email">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -230,8 +225,6 @@
                 </item>
             </argument>
         </column>
-
-
         <column name="product_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -260,7 +253,6 @@
                 </item>
             </argument>
         </column>
-
         <actionsColumn name="actions" class="Adorncommerce\CallForPrice\Ui\Component\Listing\Column\CallForPriceActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

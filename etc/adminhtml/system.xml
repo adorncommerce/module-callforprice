@@ -21,6 +21,13 @@
                         <field id="enable_frontend">1</field>
                     </depends>
                 </field>
+                <field id="button_zerototal" translate="label comment" type="select" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Want to Enable Call For Price Button For Zero Price Product?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable_frontend">1</field>
+                    </depends>
+                </field>
                 <field id="send_email_cc" translate="label comment" type="text" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Send Email cc</label>
                     <validate>validate-email</validate>
@@ -44,6 +51,9 @@
                 </field>
                 <field id="email_custom_text" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Template Header</label>
+                    <depends>
+                        <field id="enable_frontend">1</field>
+                    </depends>
                 </field>
             </group>
         </section>

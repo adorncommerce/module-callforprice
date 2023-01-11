@@ -1,5 +1,7 @@
 <?php
+
 namespace Adorncommerce\CallForPrice\Model\ResourceModel;
+
 /**
  * Class CallForPrice
  * @package Adorncommerce\CallForPrice\Model\ResourceModel
@@ -32,5 +34,4 @@ class CallForPrice extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     {
         $this->_init('callforprice_request', 'id');
     }
-
 }

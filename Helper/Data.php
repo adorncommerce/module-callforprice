@@ -28,6 +28,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     const CONFIG_PATH_GENERAL_EMAIL_CUSTOM_TEXT = 'adorncommerce/general/email_custom_text';
 
+    const CONFIG_PATH_GENERAL_ZERO_PRICE = 'adorncommerce/general/button_zerototal';
+
     /**
      * @var \Magento\Customer\Model\SessionFactory
      */
@@ -36,18 +38,30 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @var \Magento\Framework\App\Http\Context
      */
     private $httpContext;
+    /**
+     * @var \Magento\Catalog\Model\StoreManager
+     */
+    protected $storeManager;
+    /**
+     * @var \Magento\Customer\Model\SessionFactory
+     */
+    protected $sessionFactory;
 
     /**
      * @param Context $context
      * @param SessionFactory $customerSession
-     * @param \Magento\Framework\App\Http\Context $httpContext
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param SessionFactory $sessionFactory
      */
     public function __construct(
         Context $context,
-        SessionFactory $customerSession
-    )
-    {
+        SessionFactory $customerSession,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Customer\Model\SessionFactory $sessionFactory
+    ) {
+        $this->storeManager = $storeManager;
         $this->customerSession = $customerSession;
+        $this->sessionFactory = $sessionFactory;
         parent::__construct($context);
     }
 
@@ -63,6 +77,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
+    /**
+     * @return bool
+     */
     public function isModuleOutputDisabled()
     {
         $configEnabled = $this->scopeConfig->getValue(
@@ -74,10 +91,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $configEnabled == Boolean::VALUE_NO || !$isOutputEnabled;
     }
 
+    /**
+     * @return bool
+     */
     public function isAvailableForCustomer()
     {
         $currentGroupId = $this->customerSession->create()->getCustomer()->getGroupId();
-        if(!$this->customerSession->create()->getCustomer()->getData()){
+        if (!$this->customerSession->create()->getCustomer()->getData()) {
             $currentGroupId = 0;
         }
         $configEnabled = $this->scopeConfig->getValue(
@@ -88,9 +108,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return true;
         }
         return false;
-
     }
 
+    /**
+     * @return mixed
+     */
     public function senderEmailFrom()
     {
         return $this->scopeConfig->getValue(
@@ -99,6 +121,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
+    /**
+     * @return mixed
+     */
     public function senderEmailto()
     {
         return $this->scopeConfig->getValue(
@@ -107,6 +132,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         ) ?: $this->senderEmail();
     }
 
+    /**
+     * @return mixed
+     */
     public function senderEmail()
     {
         return $this->scopeConfig->getValue(
@@ -115,6 +143,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
+    /**
+     * @return mixed
+     */
     public function getButtonText()
     {
         return $this->scopeConfig->getValue(
@@ -123,6 +154,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
+    /**
+     * @return mixed
+     */
     public function getEmailSender()
     {
         switch ($this->senderEmailFrom()) {
@@ -138,7 +172,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             case "custom1":
                 $_path = "trans_email/ident_custom1/email";
                 break;
-            case "custom2" :
+            case "custom2":
                 $_path = "trans_email/ident_custom2/email";
                 break;
         }
@@ -148,6 +182,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
+    /**
+     * @return mixed
+     */
     public function getEmailSendername()
     {
 
@@ -164,7 +201,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             case "custom1":
                 $_path = "trans_email/ident_custom1/name";
                 break;
-            case "custom2" :
+            case "custom2":
                 $_path = "trans_email/ident_custom2/name";
                 break;
         }
@@ -174,6 +211,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
+    /**
+     * @param $product
+     * @return bool
+     */
     public function isEnable($product)
     {
         $enable = $this->scopeConfig->getValue(
@@ -187,6 +228,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getEmailCustomText()
     {
         return $this->scopeConfig->getValue(
@@ -195,4 +239,37 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
+    /**
+     * @return mixed
+     */
+    public function isEnableForZeroPrice()
+    {
+        return $this->scopeConfig->getValue(
+            self::CONFIG_PATH_GENERAL_ZERO_PRICE,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function submitformurl()
+    {
+        $submitformurl = $this->storeManager->getStore()->getBaseUrl() . 'callprice/index/submit';
+        return $submitformurl;
+    }
+
+    /**
+     * @return \Magento\Customer\Model\Customer|string
+     */
+    public function getCurrentCustomerData()
+    {
+        $sessionData = $this->sessionFactory->create();
+        if ($sessionData->isLoggedIn()) {
+            return $sessionData->getCustomer();
+        } else {
+            return '';
+        }
+    }
 }

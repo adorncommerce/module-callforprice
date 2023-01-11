@@ -13,6 +13,7 @@ class Editor extends FormField
      * @var WysiwygConfig
      */
     protected $wysiwygConfig;
+
     /**
      * @param Context $context
      * @param WysiwygConfig $wysiwygConfig
@@ -27,6 +28,10 @@ class Editor extends FormField
         parent::__construct($context, $data);
     }
 
+    /**
+     * @param AbstractElement $element
+     * @return string
+     */
     protected function _getElementHtml(AbstractElement $element)
     {
         $element->setWysiwyg(true);

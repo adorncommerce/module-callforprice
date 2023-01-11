@@ -1,7 +1,9 @@
 <?php
+
 namespace Adorncommerce\CallForPrice\Model\Config\Source;
 
 use \Magento\Customer\Model\ResourceModel\Group\Collection;
+
 /**
  * Class CustomerGroup
  * @package Adorncommerce\CallForPrice\Model\Config\Source
@@ -15,11 +17,19 @@ class CustomerGroup implements \Magento\Framework\Option\ArrayInterface
 
     protected $_options;
 
-    public function __construct( Collection $customerGroup ) {
+    /**
+     * @param Collection $customerGroup
+     */
+    public function __construct(Collection $customerGroup)
+    {
         $this->_customerGroup = $customerGroup;
     }
 
-    public function toOptionArray() {
+    /**
+     * @return array
+     */
+    public function toOptionArray()
+    {
         if (!$this->_options) {
             $this->_options = $this->_customerGroup->toOptionArray();
         }

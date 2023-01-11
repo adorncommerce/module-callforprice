@@ -5,6 +5,9 @@
             <action method='setTemplate'>
                 <argument name='template' xsi:type='string'>Adorncommerce_CallForPrice::product/list.phtml</argument>
             </action>
+            <arguments>
+                <argument name="viewModel" xsi:type="object">Adorncommerce\CallForPrice\ViewModel\CallForPrice</argument>
+            </arguments>
         </referenceBlock>
     </body>
 </page>

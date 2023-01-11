@@ -17,7 +17,6 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Class CallForPriceAttribute for Create Product Attribute using Data Patch.
- * @package Adorncommerce\CallForPrice\Setup\Patch\Data
  */
 class CallForPriceAttribute implements DataPatchInterface, PatchRevertableInterface
 {
@@ -74,7 +73,12 @@ class CallForPriceAttribute implements DataPatchInterface, PatchRevertableInterf
     }
 
     /**
-     * {@inheritdoc}
+     * Apply Function
+     *
+     * @return CallForPriceAttribute|void
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Zend_Validate_Exception
      */
     public function apply()
     {
@@ -84,16 +88,17 @@ class CallForPriceAttribute implements DataPatchInterface, PatchRevertableInterf
     }
 
     /**
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
-     * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Zend_Validate_Exception
+     * AddCallForPriceAttribute Function
+     *
+     * @return void
      */
     public function addCallForPriceAttribute()
     {
         $eavSetup = $this->eavSetupFactory->create();
         /*$eavSetup->removeAttribute(\Magento\Catalog\Model\Product::ENTITY, 'call_for_price_active');*/
         $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY, 'call_for_price_active',
+            \Magento\Catalog\Model\Product::ENTITY,
+            'call_for_price_active',
             [
                 'group' => 'Product Details',
                 'type' => 'int',
@@ -102,7 +107,7 @@ class CallForPriceAttribute implements DataPatchInterface, PatchRevertableInterf
                 'label' => 'Call for Price',
                 'input' => 'boolean',
                 'class' => '',
-                'source' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
+                'source' => Magento\Eav\Model\Entity\Attribute\Source\Boolean::class,
                 'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
                 'visible' => true,
                 'required' => false,
@@ -119,7 +124,9 @@ class CallForPriceAttribute implements DataPatchInterface, PatchRevertableInterf
     }
 
     /**
-     * {@inheritdoc}
+     * GetDependencies
+     *
+     * @return array|string[]
      */
     public static function getDependencies()
     {
@@ -127,14 +134,18 @@ class CallForPriceAttribute implements DataPatchInterface, PatchRevertableInterf
     }
 
     /**
+     * Revert
      *
+     * @return void
      */
     public function revert()
     {
     }
 
     /**
-     * {@inheritdoc}
+     * GetAliases
+     *
+     * @return array|string[]
      */
     public function getAliases()
     {

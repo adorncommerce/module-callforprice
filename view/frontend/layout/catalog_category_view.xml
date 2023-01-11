@@ -1,9 +1,13 @@
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="category.products.list">
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">Adorncommerce_CallForPrice::product/list.phtml</argument>
             </action>
+            <arguments>
+                <argument name="viewModel" xsi:type="object">Adorncommerce\CallForPrice\ViewModel\CallForPrice</argument>
+            </arguments>
         </referenceBlock>
     </body>
 </page>

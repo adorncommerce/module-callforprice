@@ -9,10 +9,16 @@ use Magento\Backend\App\Action;
  */
 class Delete extends \Magento\Backend\App\Action
 {
+    /**
+     * @var \Adorncommerce\CallForPrice\Model\CallForPriceFactory
+     */
     protected $callForPriceFactory;
 
-
-    public function __construct(Action\Context $context,\Adorncommerce\CallForPrice\Model\CallForPriceFactory $callForPriceFactory)
+    /**
+     * @param Action\Context $context
+     * @param \Adorncommerce\CallForPrice\Model\CallForPriceFactory $callForPriceFactory
+     */
+    public function __construct(Action\Context $context, \Adorncommerce\CallForPrice\Model\CallForPriceFactory $callForPriceFactory)
     {
         $this->callForPriceFactory = $callForPriceFactory;
         parent::__construct($context);

@@ -7,7 +7,6 @@
              sortOrder="9999"
              resource="Magento_Catalog::products"
              parent="Magento_Catalog::inventory"
-             action="adorncommerce_callforprice/callforprice"
-        />
+             action="adorncommerce_callforprice/callforprice" />
     </menu>
 </config>

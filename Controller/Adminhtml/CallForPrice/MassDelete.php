@@ -10,7 +10,7 @@ use Magento\Framework\Controller\ResultFactory;
  * Class MassDelete
  * @package Adorncommerce\CallForPrice\Controller\Adminhtml\CallForPrice
  */
-class MassDelete  extends \Magento\Backend\App\Action
+class MassDelete extends \Magento\Backend\App\Action
 {
     /**
      * @var Filter
@@ -23,12 +23,12 @@ class MassDelete  extends \Magento\Backend\App\Action
     protected $collectionFactory;
 
 
-	/**
-	 * MassDelete constructor.
-	 * @param Context $context
-	 * @param Filter $filter
-	 * @param CollectionFactory $collectionFactory
-	 */
+    /**
+     * MassDelete constructor.
+     * @param Context $context
+     * @param Filter $filter
+     * @param CollectionFactory $collectionFactory
+     */
     public function __construct(Context $context, Filter $filter, CollectionFactory $collectionFactory)
     {
         $this->filter = $filter;

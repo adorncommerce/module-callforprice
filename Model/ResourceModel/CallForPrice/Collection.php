@@ -1,6 +1,7 @@
 <?php
 
 namespace Adorncommerce\CallForPrice\Model\ResourceModel\CallForPrice;
+
 /**
  * Class Collection
  * @package Adorncommerce\CallForPrice\Model\ResourceModel\CallForPrice
@@ -28,14 +29,15 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         \Magento\Framework\Event\ManagerInterface $eventManager,
         \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
         \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
-    )
-    {
+    ) {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
     }
 
+    /**
+     * @return void
+     */
     protected function _construct()
     {
         $this->_init('Adorncommerce\CallForPrice\Model\CallForPrice', 'Adorncommerce\CallForPrice\Model\ResourceModel\CallForPrice');
     }
-
 }

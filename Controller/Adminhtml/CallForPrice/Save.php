@@ -11,6 +11,9 @@ use Magento\Framework\Model;
  */
 class Save extends \Magento\Backend\App\Action
 {
+    /**
+     * @var \Adorncommerce\CallForPrice\Model\CallForPrice
+     */
     protected $model;
     /**
      * @var $session
@@ -27,9 +30,7 @@ class Save extends \Magento\Backend\App\Action
         \Magento\Backend\App\Action\Context $context,
         \Adorncommerce\CallForPrice\Model\CallForPrice $model,
         \Magento\Backend\Model\Session $session
-
-    )
-    {
+    ) {
         $this->model = $model;
         $this->session = $session;
         parent::__construct($context);
@@ -58,7 +59,6 @@ class Save extends \Magento\Backend\App\Action
                 $this->model->load($id);
             }
             try {
-
                 $this->model
                         ->setCustomerName($data['customer_name'])
                         ->setCustomerEmail($data['customer_email'])

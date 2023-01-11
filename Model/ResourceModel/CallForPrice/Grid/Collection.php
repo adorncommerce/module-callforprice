@@ -52,8 +52,7 @@ class Collection extends CallForPriceCollection implements SearchResultInterface
         AdapterInterface $connection = null,
         AbstractDb $resource = null,
         $model = 'Magento\Framework\View\Element\UiComponent\DataProvider\Document'
-    )
-    {
+    ) {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
         $this->_eventPrefix = $eventPrefix;
         $this->_eventObject = $eventObject;

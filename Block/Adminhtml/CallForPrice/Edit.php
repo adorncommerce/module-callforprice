@@ -1,6 +1,7 @@
 <?php
 
 namespace Adorncommerce\CallForPrice\Block\Adminhtml\CallForPrice;
+
 /**
  * Class Edit
  * @package Adorncommerce\CallForPrice\Block\Adminhtml\CallForPrice
@@ -26,7 +27,10 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
         $this->_coreRegistry = $registry;
         parent::__construct($context, $data);
     }
-    
+
+    /**
+     * @return void
+     */
     protected function _construct()
     {
         $this->_objectId = 'id';
@@ -74,5 +78,4 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     {
         return $this->_authorization->isAllowed($resourceId);
     }
-
 }

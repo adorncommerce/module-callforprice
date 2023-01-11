@@ -7,12 +7,13 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct(); ?>
+<?php $helper = $block->getData('viewModel')->getHelperData()?>
 <?php $buttonTitle = __('Add to Cart'); ?>
 <?php $callForPrice = $_product->getCallForPriceActive(); ?>
-<?php if ($_product->isSaleable()) : ?>
+<?php if ($_product->isSaleable()): ?>
     <div class="box-tocart">
         <div class="fieldset">
-			<?php if ($block->shouldRenderQuantity()) : ?>
+            <?php if ($block->shouldRenderQuantity()): ?>
                 <div class="field qty">
                     <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
                     <div class="control">
@@ -27,9 +28,11 @@
                         />
                     </div>
                 </div>
-			<?php endif; ?>
+            <?php endif; ?>
             <div class="actions">
-				<?php if ($_product->isSaleable() && !$this->helper('Adorncommerce\CallForPrice\Helper\Data')->isEnable($_product->getData('call_for_price_active'))) : ?>
+                <?php if ($_product->isSaleable() && !$helper->isEnable($_product->getData('call_for_price_active'))
+                    && (($helper->isEnableForZeroPrice()==0) || (($_product->getPrice()) != 0) ||
+                        ($_product->getTypeId() == 'configurable') )): ?>
                     <!-- Cart button start -->
                     <button type="submit"
                             title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
@@ -38,12 +41,13 @@
                         <span><?= $block->escapeHtml($buttonTitle) ?></span>
                     </button>
                     <!-- Cart button stop -->
-				<?php else: ?>
-					<?php $buttontext = $this->helper('Adorncommerce\CallForPrice\Helper\Data')->getButtonText(); ?>
+                <?php else: ?>
+                    <?php $buttontext = $helper->getButtonText(); ?>
                     <a href="javascript:void(0)" id="call-for-price" target="_self"
-                       class="action primary tocart callfor-price"><span><?php echo $buttontext; ?></span></a>
-				<?php endif; ?>
-				<?= $block->getChildHtml('', true) ?>
+                       style="text-align: center;"
+                       class="action primary tocart callfor-price"><span><?= /*@noEscaped*/ $buttontext; ?></span></a>
+                <?php endif; ?>
+                <?= $block->getChildHtml('', true) ?>
             </div>
         </div>
     </div>

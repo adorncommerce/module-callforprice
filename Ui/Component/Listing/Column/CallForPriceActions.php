@@ -1,4 +1,5 @@
 <?php
+
 namespace Adorncommerce\CallForPrice\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -12,11 +13,13 @@ use Magento\Framework\UrlInterface;
  */
 class CallForPriceActions extends Column
 {
-    /** Url path */
     const CALLFORPRICE_URL_PATH_EDIT = 'adorncommerce_callforprice/callforprice/edit';
+
     const CALLFORPRICE_URL_PATH_DELETE = 'adorncommerce_callforprice/callforprice/delete';
 
-    /** @var UrlInterface */
+    /**
+     * @var UrlInterface
+     */
     protected $urlBuilder;
 
     /**

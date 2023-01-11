@@ -57,7 +57,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                         'action' => $this->getData('action'),
                         'method' => 'post',
                         'enctype'=>"multipart/form-data"]
-            ]);
+            ]
+        );
 
         $form->setHtmlIdPrefix('callforprice_');
 

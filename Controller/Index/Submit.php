@@ -46,14 +46,15 @@ class Submit extends \Magento\Framework\App\Action\Action
      * @param \Adorncommerce\CallForPrice\Helper\Data $data
      * @param \Magento\Framework\Escaper $escaper
      */
-    public function __construct(Context $context,
-                                \Adorncommerce\CallForPrice\Model\CallForPriceFactory $callforprice,
-                                \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
-                                \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
-                                \Magento\Store\Model\StoreManagerInterface $storeManager,
-                                \Adorncommerce\CallForPrice\Helper\Data $data,
-                                \Magento\Framework\Escaper $escaper)
-    {
+    public function __construct(
+        Context $context,
+        \Adorncommerce\CallForPrice\Model\CallForPriceFactory $callforprice,
+        \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
+        \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Adorncommerce\CallForPrice\Helper\Data $data,
+        \Magento\Framework\Escaper $escaper
+    ) {
         parent::__construct($context);
         $this->_callforprice = $callforprice;
         $this->_transportBuilder = $transportBuilder;
@@ -65,13 +66,12 @@ class Submit extends \Magento\Framework\App\Action\Action
 
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|void
-     * @throws \Exception
      */
     public function execute()
     {
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        if($post = $this->getRequest()->getParams()) {
-            if( !empty($post['customer']) &&
+        if ($post = $this->getRequest()->getParams()) {
+            if (!empty($post['customer']) &&
                 !empty($post['customer']['name']) &&
                 !empty($post['customer']['email']) &&
                 !empty($post['customer']['telephone']) &&
@@ -89,11 +89,11 @@ class Submit extends \Magento\Framework\App\Action\Action
                 $model->setComment($post['customer']['request_details']);
                 $model->setStatus('1');
                 $model->save();
-                try{
+                try {
                     $postObject = new \Magento\Framework\DataObject();
                     $postObject->setData($post);
-                    $templateOptions = array('area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $this->storeManager->getStore()->getId());
-                    $templateVars = array(
+                    $templateOptions = ['area' => \Magento\Framework\App\Area::AREA_FRONTEND, 'store' => $this->storeManager->getStore()->getId()];
+                    $templateVars = [
                         'store' => $this->storeManager->getStore(),
                         'customer_name' => $post['customer']['name'],
                         'customer_email' => $post['customer']['email'],
@@ -102,20 +102,20 @@ class Submit extends \Magento\Framework\App\Action\Action
                         'telephone' => $post['customer']['telephone'],
                         'comment' => $post['customer']['request_details'],
                         'email_custom_text' => $this->data->getEmailCustomText()
-                    );
+                    ];
                     $to = $this->data->getEmailSender();
                     $this->inlineTranslation->suspend();
                     $cc = $this->data->senderEmailto();
                     $transport = $this->_transportBuilder->setTemplateIdentifier('callforprice_request')
                         ->setTemplateOptions($templateOptions)
                         ->setTemplateVars($templateVars)
-                        ->setFrom(array('email' => $post['customer']['email'], 'name' => $post['customer']['name']))
+                        ->setFrom(['email' => $post['customer']['email'], 'name' => $post['customer']['name']])
                         ->addTo($to)
                         ->addCc($cc)
                         ->getTransport();
                     $transport->sendMessage();
                     $this->inlineTranslation->resume();
-                }catch(\Exception $e){
+                } catch (\Exception $e) {
                     $this->messageManager->addNotice($e->getMessage());
                     $this->_redirect($this->_redirect->getRefererUrl());
                 }
@@ -127,7 +127,7 @@ class Submit extends \Magento\Framework\App\Action\Action
         } else {
             $this->messageManager->addError('Can’t Send Request');
         }
-        $this->_redirect($this->_redirect->getRefererUrl());;
+        $this->_redirect($this->_redirect->getRefererUrl());
+        ;
     }
-
 }

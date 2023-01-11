@@ -1,5 +1,6 @@
 <?php
 namespace Adorncommerce\CallForPrice\Block;
+
 /**
  * Class CallForPrice
  * @package Adorncommerce\CallForPrice\Block
@@ -23,7 +24,6 @@ class CallForPrice extends \Magento\Framework\View\Element\Template
      */
     protected $addressRepository;
 
-
     /**
      * CallForPrice constructor.
      * @param \Magento\Catalog\Block\Product\View $productcollections
@@ -34,15 +34,14 @@ class CallForPrice extends \Magento\Framework\View\Element\Template
      * @param \Magento\Customer\Model\Session $customerSession
      * @param array $data
      */
-     public function __construct(
-         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
-         \Magento\Customer\Api\AddressRepositoryInterface $addressRepository,
-         \Magento\Framework\Registry $registry,
+    public function __construct(
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
+        \Magento\Customer\Api\AddressRepositoryInterface $addressRepository,
+        \Magento\Framework\Registry $registry,
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Customer\Model\SessionFactory $customerSession,
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($context, $data);
         $this->addressRepository = $addressRepository;
         $this->customerRepository = $customerRepository;
@@ -53,12 +52,17 @@ class CallForPrice extends \Magento\Framework\View\Element\Template
     /**
      * @return \Magento\Customer\Model\Customer
      */
-    public function getCustomerData(){
+    public function getCustomerData()
+    {
 
-         if($this->customerSession->create()->isLoggedIn()){
-             return $this->customerSession->create()->getCustomer();
-         }
+        if ($this->customerSession->create()->isLoggedIn()) {
+            return $this->customerSession->create()->getCustomer();
+        }
     }
+
+    /**
+     * @return mixed|null
+     */
     public function getCurrentProduct()
     {
         return $this->_registry->registry('current_product');

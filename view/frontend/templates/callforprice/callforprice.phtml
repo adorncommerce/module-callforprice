@@ -5,67 +5,71 @@
  */
 ?>
 <?php
-$helper = $this->helper('Adorncommerce\CallForPrice\Helper\Data');
+$helper = $block->getData('viewModel')->getHelperData();
 $_product = $block->getCurrentProduct();
 if ($helper->isAvailableForCustomer()):
-	?>
+    ?>
     <div id="call-for-price-form" class="no-display quick-popup-qquote" style="display: none">
-		<?php
-		$customerData = false;
-		if ($block->getCustomerData()) {
-			$customerData = $block->getCustomerData();
-		}
-		?>
+        <?php
+        $customerData = false;
+        if ($block->getCustomerData()) {
+            $customerData = $block->getCustomerData();
+        }
+        ?>
         <form method='post' class="formquickquote form-create-account" data-mage-init='{"validation":{}}'
               id="callforpricePopup" name="callforpricePopup"
-              action='<?php echo $this->getUrl('callforprice/index/submit', array('_secure' => true)) ?>'>
+              action='<?= /* @noEscape */$block->getUrl('callforprice/index/submit', ['_secure' => true]) ?>'>
             <div class="formquickquote-form">
                 <div class="fieldset">
-					<?php if ($customerData):
-						$email = $customerData->getData('email') ? $customerData->getData('email') : $block->getCustomerEmail();
-					endif; ?>
+                    <?php if ($customerData):
+                        $email = $customerData->getData('email') ? $customerData->getData('email') :
+                            $block->getCustomerEmail();
+                    endif; ?>
                     <input type='text'
-					       <?php if ($customerData): ?>value="<?php echo $customerData->getName() ?>"<?php endif; ?>
+                           <?php if ($customerData): ?>value="<?= /* @noEscape */ $customerData->getName() ?>"<?php
+                    endif; ?>
                            name='customer[name]' class="required-entry input-text"
-                           placeholder="<?php echo 'Name' ?> *"/>
+                           placeholder="<?= 'Name' ?> *"/>
                 </div>
                 <div class="fieldset">
                     <input <?php if (!empty($email)): ?>readonly="readonly"<?php endif; ?>
-                           type='email' <?php if ($customerData): ?> value="<?php echo $email; ?>" <?php endif; ?>
+                           type='email' <?php if ($customerData): ?> value="<?=/* @noEscape */$email; ?>" <?php endif;
+                            ?>
                            name='customer[email]' class="input-text required-entry validate-email"
-                           placeholder="<?php echo 'Email Address' ?> *"/>
+                           placeholder="<?= 'Email Address' ?> *"/>
                 </div>
                 <div class="fieldset">
                     <input type='text' value="" name='customer[telephone]' data-validate="{'validate-number':true}"
-                           class="input-text required-entry" placeholder="<?php echo 'Telephone' ?> *"/>
+                           class="input-text required-entry" placeholder="<?= 'Telephone' ?> *"/>
                 </div>
 
                 <div class="fieldset">
                     <input type='number' value="" name='customer[product_qty]' data-validate="{'validate-number':true}"
-                           class="input-text required-entry" placeholder="<?php echo 'Quantity Needed' ?> *"/>
+                           class="input-text required-entry" placeholder="<?= 'Quantity Needed' ?> *"/>
                 </div>
                 <div class="fieldset">
                     <textarea id="customer[request_details]" class="input-text"
                               name="customer[request_details]"
-                              placeholder="<?php echo 'Comment' ?>"></textarea>
+                              placeholder="<?= 'Comment' ?>"></textarea>
                 </div>
                 <div class="fieldset">
-                    <button id="formcallforpricesubmit" type="submit"
-                            title="<?php echo 'Request Call For Price' ?>">
-                        <span><span><?php echo 'Request Call For Price' ?></span></span></button>
+                    <button id="formcallforpricesubmit" type="submit" class="action primary"
+                            title="<?= 'Request Call For Price' ?>">
+                        <span><span><?= 'Request Call For Price' ?></span></span></button>
                 </div>
                 <input type="hidden" name="product_id" value="<?php if ($_product) {
-					echo $_product->getId();
-				} ?>"/>
+                    /* @noEscape */ echo $_product->getId();
+                                                              } ?>"/>
 
                 <input type="hidden" name="customer_id" value="<?php if ($customerData) {
-					echo $customerData->getId();
-				} ?>"/>
+                    /* @noEscape */ echo $customerData->getId();
+                                                               } ?>"/>
                 <input type="hidden" name="product_name" value="<?php if ($_product) {
-					echo $_product->getName();
-				} ?>"/>
+                    /* @noEscape */ echo $_product->getName();
+                                                                } ?>"/>
                 <p>
-					<?php echo 'Note: Please include as much details and relevant options about the item to help us match your request with an accurate price.' ?>
+                    <?= 'Note: Please include as much details and relevant options about the item to help us match your
+                    request with an accurate price.' ?>
                 </p>
             </div>
         </form>
@@ -85,7 +89,9 @@ if ($helper->isAvailableForCustomer()):
                         type: 'popup',
                         responsive: true,
                         innerScroll: true,
-                        title: 'Call For Price for <?php if ($_product) { echo $_product->getName(); } ?>',
+                        title: 'Call For Price for <?php if ($_product) {
+                            /* @noEscape */ echo $_product->getName();
+                                                   } ?>',
                         opened: function () {
                             jQuery(".modal-footer").hide();
                         },

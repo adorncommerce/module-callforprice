@@ -19,28 +19,113 @@ interface CallForPriceInterface
     const QTY = 'qty';
     const COMMENT = 'comment';
 
-
+    /**
+     * @return mixed
+     */
     public function getId();
+
+    /**
+     * @return mixed
+     */
     public function getCustomerName();
+
+    /**
+     * @return mixed
+     */
     public function getCustomerEmail();
+
+    /**
+     * @return mixed
+     */
     public function getCustomerId();
+
+    /**
+     * @return mixed
+     */
     public function getCustomerTelephone();
+
+    /**
+     * @return mixed
+     */
     public function getProductId();
+
+    /**
+     * @return mixed
+     */
     public function getProductName();
+
+    /**
+     * @return mixed
+     */
     public function getStatus();
+
+    /**
+     * @return mixed
+     */
     public function getQty();
+
+    /**
+     * @return mixed
+     */
     public function getComment();
 
-
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function setId($id);
-    public function setCustomerName($customername);
-    public function setCustomerEmail($customeremail);
-    public function setCustomerId($customerid);
-    public function setCustomerTelephone($customertelephone);
-    public function setProductId($productid);
-    public function setProductName($productname);
-    public function setStatus($status);
-    public function setQty($qty);
-    public function setComment($comment);
 
+    /**
+     * @param $customername
+     * @return mixed
+     */
+    public function setCustomerName($customername);
+
+    /**
+     * @param $customeremail
+     * @return mixed
+     */
+    public function setCustomerEmail($customeremail);
+
+    /**
+     * @param $customerid
+     * @return mixed
+     */
+    public function setCustomerId($customerid);
+
+    /**
+     * @param $customertelephone
+     * @return mixed
+     */
+    public function setCustomerTelephone($customertelephone);
+
+    /**
+     * @param $productid
+     * @return mixed
+     */
+    public function setProductId($productid);
+
+    /**
+     * @param $productname
+     * @return mixed
+     */
+    public function setProductName($productname);
+
+    /**
+     * @param $status
+     * @return mixed
+     */
+    public function setStatus($status);
+
+    /**
+     * @param $qty
+     * @return mixed
+     */
+    public function setQty($qty);
+
+    /**
+     * @param $comment
+     * @return mixed
+     */
+    public function setComment($comment);
 }

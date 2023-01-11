@@ -1,6 +1,7 @@
 <?php
 
 namespace Adorncommerce\CallForPrice\Controller\Adminhtml\CallForPrice;
+
 /**
  * Class Inline
  * @package Adorncommerce\CallForPrice\Controller\Adminhtml\CallForPrice
@@ -11,15 +12,17 @@ class Inline extends \Magento\Backend\App\Action
      * @var \Magento\Framework\Controller\Result\JsonFactory
      */
     protected $jsonFactory;
-
+    /**
+     * @var \Adorncommerce\CallForPrice\Model\CallForPriceFactory
+     */
     protected $callForPriceFactory;
 
-	/**
-	 * Inline constructor.
-	 * @param \Magento\Backend\App\Action\Context $context
-	 * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
-	 * @param \Adorncommerce\CallForPrice\Model\CallForPriceFactory $callForPriceFactory
-	 */
+    /**
+     * Inline constructor.
+     * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+     * @param \Adorncommerce\CallForPrice\Model\CallForPriceFactory $callForPriceFactory
+     */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,

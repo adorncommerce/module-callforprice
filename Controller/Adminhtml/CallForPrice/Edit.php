@@ -18,24 +18,24 @@ class Edit extends \Magento\Backend\App\Action
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $resultPageFactory;
-
+    /**
+     * @var \Adorncommerce\CallForPrice\Model\CallForPriceFactory
+     */
     protected $callForPriceFactory;
 
-	/**
-	 * Edit constructor.
-	 * @param Action\Context $context
-	 * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-	 * @param \Magento\Framework\Registry $registry
-	 * @param \Adorncommerce\CallForPrice\Model\CallForPriceFactory $callForPriceFactory
-	 */
+    /**
+     * Edit constructor.
+     * @param Action\Context $context
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Magento\Framework\Registry $registry
+     * @param \Adorncommerce\CallForPrice\Model\CallForPriceFactory $callForPriceFactory
+     */
     public function __construct(
         Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
         \Magento\Framework\Registry $registry,
         \Adorncommerce\CallForPrice\Model\CallForPriceFactory $callForPriceFactory
-
-    )
-    {
+    ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->_coreRegistry = $registry;
         $this->callForPriceFactory = $callForPriceFactory;

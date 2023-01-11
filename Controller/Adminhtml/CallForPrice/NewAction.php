@@ -1,5 +1,6 @@
 <?php
 namespace Adorncommerce\CallForPrice\Controller\Adminhtml\CallForPrice;
+
 /**
  * Class NewAction
  * @package Adorncommerce\CallForPrice\Controller\Adminhtml\CallForPrice\

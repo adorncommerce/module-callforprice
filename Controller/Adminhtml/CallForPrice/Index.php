@@ -22,7 +22,8 @@ class Index extends \Magento\Backend\App\Action
      * @param Context $context
      * @param PageFactory $resultPageFactory
      */
-    public function __construct(Context $context,PageFactory $resultPageFactory) {
+    public function __construct(Context $context, PageFactory $resultPageFactory)
+    {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
